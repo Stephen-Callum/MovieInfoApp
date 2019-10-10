@@ -69,7 +69,7 @@ function getMovie() {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="card mt-5 p-5">
+                    <div class="card mt-5 p-5" id="movie-plot">
                         <h3>Plot:<h3>
                         ${movie.Plot}
                         <hr>

@@ -10,3 +10,7 @@
 #movies .col-md-3 img {
     /* height: 240px; */
 }
+
+#movie div #movie-plot {
+    width: 100%;
+}
