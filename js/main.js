@@ -16,10 +16,14 @@ function getMovies(searchText) {
             $.each(movies, (index, movie) => { 
                  output += `
                     <div class="col-md-3">
-                        <div class="card card-body text-center">
-                            <img src="${movie.Poster}">
-                            <h5>${movie.Title}</h5>
-                            <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">Movie Details</a>
+                        <div class="card-deck">
+                            <div class="card text-center bg-dark my-3">
+                                <img src="${movie.Poster}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5>${movie.Title}</h5>
+                                    <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">Movie Details</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                  `;
@@ -30,3 +34,4 @@ function getMovies(searchText) {
             console.log(err);
         });
 }
+
