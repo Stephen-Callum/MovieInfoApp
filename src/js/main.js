@@ -1,20 +1,21 @@
 $(document).ready(() => {
-    $('#search-form').on('submit', (e) => {
-        let searchText = $('#search-text').val();
-        getMovies(searchText);
-        e.preventDefault();
-    });
+  $('#search-form').on('submit', e => {
+    let searchText = $('#search-text').val();
+    getMovies(searchText);
+    e.preventDefault();
+  });
 });
 
 // make axios http request to omdb api depending on user search
 function getMovies(searchText) {
-    axios.get(`http://www.omdbapi.com/?apikey=e3059d5b&s=` + encodeURI(searchText))
-        .then((response) => {
-            console.log(response);
-            let movies = response.data.Search;
-            let output = '';
-            $.each(movies, (index, movie) => { 
-                 output += `
+  axios
+    .get(`https://www.omdbapi.com/?apikey=e3059d5b&s=` + encodeURI(searchText))
+    .then(response => {
+      console.log(response);
+      let movies = response.data.Search;
+      let output = '';
+      $.each(movies, (index, movie) => {
+        output += `
                     <div class="col-md-3">
                         <div class="card-deck">
                             <div class="card text-center bg-dark my-3">
@@ -27,29 +28,30 @@ function getMovies(searchText) {
                         </div>
                     </div>
                  `;
-            });
-            $('#movies').html(output);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+      });
+      $('#movies').html(output);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 function movieSelected(id) {
-    sessionStorage.setItem('movieId', id);
-    window.location = 'movie.html';
-    return false;
+  sessionStorage.setItem('movieId', id);
+  window.location = 'movie.html';
+  return false;
 }
 
 function getMovie() {
-    let movieId = sessionStorage.getItem('movieId');
+  let movieId = sessionStorage.getItem('movieId');
 
-    axios.get(`http://www.omdbapi.com/?apikey=e3059d5b&i=` + encodeURI(movieId))
-        .then((response) => {
-            console.log(response);
-            let movie = response.data;
+  axios
+    .get(`https://www.omdbapi.com/?apikey=e3059d5b&i=` + encodeURI(movieId))
+    .then(response => {
+      console.log(response);
+      let movie = response.data;
 
-            let output = `
+      let output = `
                 <div class="row">
                     <div class="col-md-4">
                         <img src="${movie.Poster}" class="img-thumbnail">
@@ -78,9 +80,9 @@ function getMovie() {
                     </div>
                 </div>
             `;
-            $('#movie').html(output);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+      $('#movie').html(output);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }

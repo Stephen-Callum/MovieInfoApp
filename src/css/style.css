@@ -1,0 +1,8 @@
+#movies .card-img-top,
+#movie .card-img-top {
+    width: 100%;
+}
+
+#movie div#movie-plot {
+    width: 100%;
+}
